@@ -29,16 +29,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BaseURL", "\"https://v6.exchangerate-api.com/v6/\"")
+            buildConfigField("String", "API_KEY", "\"441089e389463e0fbd4418fa\"")
         }
         staging {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BaseURL", "\"https://v6.exchangerate-api.com/v6/\"")
+            buildConfigField("String", "API_KEY", "\"441089e389463e0fbd4418fa\"")
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BaseURL", "\"https://v6.exchangerate-api.com/v6/\"")
+            buildConfigField("String", "API_KEY", "\"441089e389463e0fbd4418fa\"")
         }
     }
     compileOptions {
