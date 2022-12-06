@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface CurrencyService {
 
-    @GET("/latest/USD")
+    @GET("latest/USD")
     suspend fun getCurrencyExchangeRate(): CurrencyExchangeDTO
 
 }

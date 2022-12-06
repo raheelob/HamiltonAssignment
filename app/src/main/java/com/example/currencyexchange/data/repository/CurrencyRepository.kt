@@ -5,5 +5,5 @@ import com.example.currencyexchange.data.entities.CurrencyExchangeEntity
 import kotlinx.coroutines.flow.Flow
 
 interface CurrencyRepository {
-    fun getExchangeRate(fetchLocal: Boolean): Flow<RemoteData<List<CurrencyExchangeEntity>>>
+    fun getExchangeRate(currency: String): Flow<RemoteData<CurrencyExchangeEntity>>
 }
