@@ -6,7 +6,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.currencyexchange.R
 import com.example.currencyexchange.databinding.FragmentCurrencySelectionBinding
 import com.example.currencyexchange.ui.base.BaseFragment
 import com.example.currencyexchange.ui.currency.viewmodel.CurrencyViewModel
