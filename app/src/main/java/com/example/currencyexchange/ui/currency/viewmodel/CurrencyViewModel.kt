@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.currencyexchange.data.api.RemoteData
 import com.example.currencyexchange.ui.currency.event.CurrencyDataEvent
 import com.example.currencyexchange.ui.currency.usecase.CurrencyUseCase
+import com.example.currencyexchange.utils.RepoCallType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -25,7 +26,7 @@ class CurrencyViewModel @Inject constructor(
 
      fun fetchCurrencyExchangeRate(currency: String) = viewModelScope.launch {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.Loading)
-        currencyUseCase.execute(CurrencyUseCase.Params(currency = currency))
+        currencyUseCase.execute(CurrencyUseCase.Params(currency = currency, type = RepoCallType.VIEW_MODEL))
             .collect { response ->
                 when (response) {
                     RemoteData.Loading -> {
