@@ -15,7 +15,6 @@ abstract class UseCaseExecutor<in P, out R>() {
     fun execute(parameters: P?): Flow<RemoteData<R>> { // buffer so that there is no overflow from producer to consumer...
         return runUseCase(parameters).buffer().catch { e: Throwable ->
             when (e) {
-//                https://v6.exchangerate-api.com/v6/latest/USD?=
                 is IOException -> {
                     emit(RemoteData.RemoteErrorByNetwork)
                 }
@@ -30,7 +29,7 @@ abstract class UseCaseExecutor<in P, out R>() {
                     emit(
                         RemoteData.Error(
                             -1,
-                            ErrorData(errorType = "unknown-code", result = "error")
+                            ErrorData(errorType = "unknown-code", result = e.message)
                         )
                     )
                 }
