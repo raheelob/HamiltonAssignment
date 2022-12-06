@@ -1,0 +1,17 @@
+package com.example.currencyexchange.utils
+
+
+import com.example.currencyexchange.data.model.ErrorData
+import com.google.gson.Gson
+import retrofit2.HttpException
+
+object ErrorConvertor {
+    fun parseErrorBody(throwable: HttpException): ErrorData? {
+        return try {
+            val errorJsonString = throwable.response()?.errorBody()?.string()
+            return Gson().fromJson(errorJsonString, ErrorData::class.java)
+        } catch (exception: Exception) {
+            null
+        }
+    }
+}
