@@ -5,7 +5,6 @@ import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.currencyexchange.data.repository.CurrencyRepository
 import com.example.currencyexchange.data.service.CurrencyExchangeRateWorker
 import com.example.currencyexchange.data.service.CurrencyWorkerFactory
 import com.example.currencyexchange.ui.currency.usecase.CurrencyUseCase
@@ -43,7 +42,7 @@ class CurrencyApp : Application(), Configuration.Provider {
     }
 
     private fun setupRecurringWork() {
-        val myWorkRequest = PeriodicWorkRequestBuilder<CurrencyExchangeRateWorker>(16, TimeUnit.MINUTES).build()
+        val myWorkRequest = PeriodicWorkRequestBuilder<CurrencyExchangeRateWorker>(5, TimeUnit.HOURS).build()
         with(WorkManager.getInstance(this)) {
             enqueueUniquePeriodicWork(
                 CurrencyExchangeRateWorker.WORK_NAME,

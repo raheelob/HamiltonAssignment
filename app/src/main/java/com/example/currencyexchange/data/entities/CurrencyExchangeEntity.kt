@@ -7,7 +7,6 @@ import com.example.currencyexchange.data.model.ConversionRatesModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
-import org.jetbrains.annotations.NotNull
 
 @Entity
 @Parcelize

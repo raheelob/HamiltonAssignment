@@ -4,7 +4,7 @@ import com.example.currencyexchange.data.api.RemoteData
 import com.example.currencyexchange.data.api.UseCaseExecutor
 import com.example.currencyexchange.data.entities.CurrencyExchangeEntity
 import com.example.currencyexchange.data.repository.CurrencyRepository
-import com.example.currencyexchange.utils.RepoCallType
+import com.example.currencyexchange.utils.enums.RepoCallType
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

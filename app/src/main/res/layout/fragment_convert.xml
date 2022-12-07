@@ -19,97 +19,104 @@
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmountToConvert"
+            setFromCurrency="@{data}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias=".2"
-            setFromCurrency="@{data}"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:id="@+id/tvAmountToConvert"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".2"
+            tools:text="150 GBP" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrecedes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAmountToConvert"
             android:layout_marginTop="10dp"
-            android:text="precedes"
-            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/precedes"
+            android:textColor="@color/darker_gray"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:id="@+id/tvPrecedes"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmountToConvert" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmountConverted"
+            setToCurrency="@{data}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPrecedes"
             android:layout_marginTop="10dp"
-            setToCurrency="@{data}"
-            tools:text="178 USD"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:id="@+id/tvAmountConverted"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrecedes"
+            tools:text="178 USD" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/btnConvert"
-            app:layout_constraintEnd_toEndOf="@+id/btnConvert"
-            app:layout_constraintTop_toBottomOf="@+id/tvAmountConverted"
             app:layout_constraintBottom_toTopOf="@+id/btnConvert"
-            app:layout_constraintVertical_bias="0.8"
-            >
+            app:layout_constraintEnd_toEndOf="@+id/btnConvert"
+            app:layout_constraintStart_toStartOf="@+id/btnConvert"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmountConverted"
+            app:layout_constraintVertical_bias="0.8">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_bias="0.4"
-                app:srcCompat="@drawable/ic_count_down_timer"
-                android:id="@+id/ivTimer"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_count_down_timer" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/ivTimer"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="bottom"
                 android:textSize="30sp"
-                android:id="@+id/tvTimer"
-                app:layout_constraintBottom_toBottomOf="@+id/ivTimer"
+                android:textColor="@color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivTimer"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.49"
                 tools:text="29s" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConvert"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:text="Convert"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/convert"
+            android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="20sp"
             app:backgroundTint="@color/btn_bg"
             app:cornerRadius="5dp"
-            android:id="@+id/btnConvert"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9"/>
+            app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
