@@ -29,6 +29,7 @@ buildscript {
         robo_electric_version = '4.7.3'
         retrofit_version = '2.9.0'
         moshi_version = '1.12.0'
+        kotlin_version = '1.2.21'
     }
     repositories {
         google()

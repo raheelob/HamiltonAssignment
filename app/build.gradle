@@ -119,4 +119,5 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$android_test_runner_version"
     debugImplementation("androidx.fragment:fragment-testing:1.5.4")
     implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
 }
