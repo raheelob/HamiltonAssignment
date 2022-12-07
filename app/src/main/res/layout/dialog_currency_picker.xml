@@ -7,48 +7,44 @@
         android:layout_height="wrap_content">
 
 
-
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialogTitle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Select Currency"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:id="@+id/dialogTitle"
-            android:textColor="@color/white"
             android:background="@color/dialog_bar_color"
-            />
+            android:gravity="center"
+            android:text="Select Currency"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Close"
-            android:id="@+id/btnClose"
-            android:textColor="@color/white"
-            android:backgroundTint="@android:color/transparent"
             android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Close"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dialogTitle"
-            app:layout_constraintBottom_toBottomOf="@+id/dialogTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/dialogTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/collectionList"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:background="@color/dialog_bg"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:background="@color/dialog_bg"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialogTitle"
             tools:listitem="@layout/item_currency" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
