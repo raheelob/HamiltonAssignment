@@ -1,4 +1,4 @@
-package com.example.currencyexchange.utils
+package com.example.currencyexchange.utils.enums
 
 enum class CurrencyName {
     USD,

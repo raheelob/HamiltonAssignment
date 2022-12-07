@@ -9,6 +9,8 @@ sealed class CurrencyDataEvent {
     object Loading : CurrencyDataEvent()
     class Error(val errorData: ErrorData) : CurrencyDataEvent()
     data class ConvertedAmount(val data: ConversionModel) : CurrencyDataEvent()
-
+    object showFromCurrencySelection: CurrencyDataEvent()
+    object showToCurrencySelection: CurrencyDataEvent()
+    object swapCurrency: CurrencyDataEvent()
 
 }

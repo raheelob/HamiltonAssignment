@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.currencyexchange.ui.currency.viewmodel.CurrencyViewModel" />
@@ -13,29 +14,47 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvFrom"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constvFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="@drawable/bg_currency"
-            android:drawableEnd="@drawable/ic_drop_down"
-            android:drawablePadding="5dp"
-            android:paddingStart="15dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="15dp"
-            android:paddingBottom="10dp"
-            android:text="USD"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:onClick="@{()->viewModel.showFromDialog()}"
+            android:translationZ="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivArrows"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.1">
 
-            />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/usd"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivFrom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="USD" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_drop_down" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivArrows"
@@ -43,66 +62,114 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/tvFrom"
-            app:layout_constraintEnd_toStartOf="@+id/tvTo"
-            app:layout_constraintStart_toEndOf="@+id/tvFrom"
-            app:layout_constraintTop_toTopOf="@+id/tvFrom"
+            android:onClick="@{()->viewModel.swapCurrency()}"
+            app:layout_constraintBottom_toBottomOf="@id/constvFrom"
+            app:layout_constraintEnd_toStartOf="@+id/constvTo"
+            app:layout_constraintStart_toEndOf="@+id/constvFrom"
+            app:layout_constraintTop_toTopOf="@+id/constvFrom"
             app:srcCompat="@drawable/ic_opposite_arrows" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTo"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constvTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="@drawable/bg_currency"
-            android:drawableEnd="@drawable/ic_drop_down"
-            android:drawablePadding="5dp"
-            android:paddingStart="15dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="15dp"
-            android:paddingBottom="10dp"
-            android:text="AED"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:onClick="@{()->viewModel.showToDialog()}"
+            android:translationZ="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivArrows"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintVertical_bias="0.1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/aed"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivTo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="AED" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_drop_down" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="start"
+            android:inputType="number"
+            android:text="@string/amount"
+            android:textColor="@color/btn_bg"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etAmountToConvert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constvTo"
+            app:layout_constraintVertical_bias="0.90" />
+
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etAmountToConvert"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tvTo"
-            app:layout_constraintBottom_toTopOf="@+id/btnCalculate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintVertical_bias="0.7"
-            android:textSize="50sp"
+            android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:inputType="number"
-            android:textColor="@android:color/darker_gray"
-            />
+            android:textColor="@color/amount_entered"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCalculate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/darker_gray"
+            android:textCursorDrawable="@color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/constvTo"
+            app:layout_constraintVertical_bias="0.7" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCalculate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:text="Calculate"
+            android:fontFamily="@font/poppins_semibold"
+            android:onClick="@{()->viewModel.validateAmount(tvFrom, tvTo, etAmountToConvert)}"
+            android:text="@string/calculate"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             app:backgroundTint="@color/btn_bg"
             app:cornerRadius="5dp"
-            android:id="@+id/btnCalculate"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9"
-            android:onClick="@{()->viewModel.validateAmount(tvFrom, tvTo, etAmountToConvert)}"/>
+            app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

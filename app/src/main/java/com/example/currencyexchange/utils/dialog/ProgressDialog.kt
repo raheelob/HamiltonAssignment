@@ -1,4 +1,4 @@
-package com.example.currencyexchange.utils
+package com.example.currencyexchange.utils.dialog
 
 import android.app.Activity
 import android.app.Dialog

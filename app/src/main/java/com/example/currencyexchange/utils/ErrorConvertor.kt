@@ -1,6 +1,5 @@
 package com.example.currencyexchange.utils
 
-
 import com.example.currencyexchange.data.model.ErrorData
 import com.google.gson.Gson
 import retrofit2.HttpException

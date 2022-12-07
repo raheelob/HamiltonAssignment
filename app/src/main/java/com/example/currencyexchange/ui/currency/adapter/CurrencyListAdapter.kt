@@ -29,7 +29,7 @@ class CurrencyListAdapter(
 
     override fun onBindViewHolder(holder: CurrencyListViewHolder, position: Int) {
         val mItem = stocks.get(holder.absoluteAdapterPosition)
-        with(holder as CurrencyListViewHolder) {
+        with(holder) {
             with(binding) {
                 data = mItem
                 currencyItemClickListener = mCurrencyItemClickListener

@@ -1,4 +1,4 @@
-package com.example.currencyexchange.utils.dialog
+package com.example.currencyexchange.ui.currency.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.currencyexchange.data.model.ConversionModel
 import com.example.currencyexchange.databinding.DialogApprovalBinding
-import com.example.currencyexchange.databinding.DialogCurrencyPickerBinding
-import com.example.currencyexchange.ui.currency.adapter.CurrencyListAdapter
-import com.example.currencyexchange.utils.CurrencyName
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ApprovalBottomSheetDialog(

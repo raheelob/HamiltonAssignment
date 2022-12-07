@@ -7,7 +7,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.currencyexchange.data.api.RemoteData
 import com.example.currencyexchange.ui.currency.usecase.CurrencyUseCase
-import com.example.currencyexchange.utils.RepoCallType
+import com.example.currencyexchange.utils.enums.RepoCallType
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 

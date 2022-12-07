@@ -11,8 +11,9 @@
     <color name="dialog_bar_color">#EF354E</color>
     <color name="dialog_bg">#E44E63</color>
     <color name="btn_bg">#EE475E</color>
-    <color name="darker_gray">#8C8484</color>
+    <color name="darker_gray">#646567</color>
+    <color name="darker_gray_text">#4D5B63</color>
     <color name="tickmark">#5D6328</color>
-
+    <color name="amount_entered">#BCC2C9</color>
 
 </resources>

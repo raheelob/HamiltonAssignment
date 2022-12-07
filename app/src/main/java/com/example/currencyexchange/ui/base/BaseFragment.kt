@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.example.currencyexchange.utils.ProgressDialog
+import com.example.currencyexchange.utils.dialog.ProgressDialog
 import com.example.currencyexchange.utils.hideDialog
 import com.example.currencyexchange.utils.showDialog
 
