@@ -36,4 +36,12 @@ object BindingAdapters {
             textView.text = "${data.currencyConverted} ${data.currencyConvertedType}"
         }
     }
+
+    @BindingAdapter("setCurrencyConversion")
+    @JvmStatic
+    fun setCurrencyConversion(textView: AppCompatTextView, data:ConversionModel?) {
+        data?.let {
+            textView.text = "You are about to get ${data.currencyConverted} ${data.currencyConvertedType}for ${data.currencyToConvert} ${data.currencyToConvertType}. Do you approve this transaction ?"
+        }
+    }
 }

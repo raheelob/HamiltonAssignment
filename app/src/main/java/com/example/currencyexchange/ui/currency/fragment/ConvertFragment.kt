@@ -19,6 +19,8 @@ import com.example.currencyexchange.databinding.FragmentCurrencySelectionBinding
 import com.example.currencyexchange.ui.base.BaseFragment
 import com.example.currencyexchange.ui.currency.event.CurrencyDataEvent
 import com.example.currencyexchange.ui.currency.viewmodel.CurrencyViewModel
+import com.example.currencyexchange.utils.dialog.ApprovalBottomSheetDialog
+import com.example.currencyexchange.utils.dialog.CurrencyBottomSheetDialog
 import com.example.currencyexchange.utils.showToast
 import kotlinx.coroutines.launch
 
@@ -36,6 +38,7 @@ class ConvertFragment : BaseFragment<FragmentConvertBinding, CurrencyViewModel>(
             binding.data = data
         }
         startTimer()
+        binding.btnConvert.setOnClickListener { showApprovalDialog() }
     }
 
     private fun startTimer() {
@@ -50,6 +53,27 @@ class ConvertFragment : BaseFragment<FragmentConvertBinding, CurrencyViewModel>(
                 findNavController().navigate(R.id.action_convertFragment_to_currencySelectionFragment)
             }
         }.start()
+    }
+
+    private fun showApprovalDialog() =  childFragmentManager.let {
+        data?.let { data ->
+            countDownTimer?.cancel()
+            ApprovalBottomSheetDialog.newInstance(object :
+                ApprovalBottomSheetDialog.ItemClickListener {
+                override fun onCancelClicked() {
+                    showToast(requireContext(), "Transaction cancelled")
+                    findNavController().navigate(R.id.action_convertFragment_to_currencySelectionFragment)
+                }
+
+                override fun onApprovalClick(data: ConversionModel) {
+
+                }
+
+
+            }, data).apply {
+                show(it, "Approvale")
+            }
+        }
     }
 
     override fun observeViewModel(viewModel: CurrencyViewModel) {
