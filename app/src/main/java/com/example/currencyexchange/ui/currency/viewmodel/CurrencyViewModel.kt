@@ -80,7 +80,7 @@ class CurrencyViewModel @Inject constructor(
         Log.d("Robert","converted money ====>> $convertedMoney")
         viewModelScope.launch {
 
-             sendConvertedAmount( ConversionModel(amountToConvert.toInt(), fromCurrency, convertedMoney.toInt(), toCurrency))
+             sendConvertedAmount( ConversionModel(amountToConvert.toInt(), fromCurrency, convertedMoney.toInt(), toCurrency, (toCurrencyObject/ fromCurrencyObject) ))
          }
     }
 

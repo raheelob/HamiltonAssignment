@@ -8,5 +8,6 @@ data class ConversionModel(
     val currencyToConvert: Int,
     val currencyToConvertType: String,
     val currencyConverted: Int,
-    val currencyConvertedType: String
+    val currencyConvertedType: String,
+    val conversionRate : Double
 ) : Parcelable

@@ -12,5 +12,7 @@
     <color name="dialog_bg">#E44E63</color>
     <color name="btn_bg">#EE475E</color>
     <color name="darker_gray">#8C8484</color>
+    <color name="tickmark">#5D6328</color>
+
 
 </resources>
