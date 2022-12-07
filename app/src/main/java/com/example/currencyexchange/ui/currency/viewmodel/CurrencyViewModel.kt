@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyexchange.data.api.RemoteData
+import com.example.currencyexchange.data.model.ConversionModel
 import com.example.currencyexchange.data.model.ConversionRatesModel
 import com.example.currencyexchange.ui.currency.event.CurrencyDataEvent
 import com.example.currencyexchange.ui.currency.usecase.CurrencyUseCase
@@ -75,16 +76,16 @@ class CurrencyViewModel @Inject constructor(
      private fun convertCurrency(fromCurrency: String, toCurrency: String, conversionRatesModel: ConversionRatesModel, amountToConvert : Double) {
         val fromCurrencyObject = ConversionRatesModel::class.memberProperties.find { it.name == fromCurrency }?.get(conversionRatesModel) as Double
         val toCurrencyObject = ConversionRatesModel::class.memberProperties.find { it.name == toCurrency }?.get(conversionRatesModel) as Double
-        val conversionMoney = (amountToConvert * toCurrencyObject)/fromCurrencyObject
-        Log.d("Robert","converted money ====>> $conversionMoney")
+        val convertedMoney = (amountToConvert * toCurrencyObject)/fromCurrencyObject
+        Log.d("Robert","converted money ====>> $convertedMoney")
+        viewModelScope.launch {
+
+             sendConvertedAmount( ConversionModel(amountToConvert.toInt(), fromCurrency, convertedMoney.toInt(), toCurrency))
+         }
     }
 
-
-   /* private fun convertCurrency(fromCurrency: String, toCurrency: String, conversionRatesModel: ConversionRatesModel, amountToConvert : Double) {
-        val fromCurrencyObject = ConversionRatesModel::class.memberProperties.find { it.name == fromCurrency }?.get(conversionRatesModel) as Double
-        val toCurrencyObject = ConversionRatesModel::class.memberProperties.find { it.name == toCurrency }?.get(conversionRatesModel) as Double
-        val conversionMoney = (amountToConvert * toCurrencyObject)/fromCurrencyObject
-//        Log.d("Robert","converted money ====>> $conversionMoney")
-    }*/
+    internal suspend fun sendConvertedAmount( data: ConversionModel) {
+        currencyExchangeRateEventChannel.send(CurrencyDataEvent.ConvertedAmount(data))
+    }
 
 }

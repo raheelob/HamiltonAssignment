@@ -2,20 +2,22 @@ package com.example.currencyexchange.ui.currency.fragment
 
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.currencyexchange.R
+import com.example.currencyexchange.data.model.ConversionModel
 import com.example.currencyexchange.databinding.FragmentCurrencySelectionBinding
 import com.example.currencyexchange.ui.base.BaseFragment
+import com.example.currencyexchange.ui.currency.event.CurrencyDataEvent
 import com.example.currencyexchange.ui.currency.viewmodel.CurrencyViewModel
 import com.example.currencyexchange.utils.ProgressDialog
 import com.example.currencyexchange.utils.dialog.CurrencyBottomSheetDialog
 import com.example.currencyexchange.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import junit.runner.Version.id
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -73,13 +75,19 @@ class CurrencySelectionFragment : BaseFragment<FragmentCurrencySelectionBinding,
         }
     }
 
-
-
     override fun observeViewModel(viewModel: CurrencyViewModel) {
       viewLifecycleOwner.lifecycleScope.launch{
           repeatOnLifecycle(Lifecycle.State.STARTED){
-              viewModel.currencyExchangeRateTasksEvent.collect{
-
+              viewModel.currencyExchangeRateTasksEvent.collect{ eventState ->
+                      when (eventState) {
+                          is CurrencyDataEvent.ConvertedAmount ->{
+                              val direction = CurrencySelectionFragmentDirections.actionCurrencySelectionFragmentToConvertFragment(eventState.data)
+                              findNavController().navigate(direction)
+                          }
+                          is CurrencyDataEvent.Error -> {}
+                          CurrencyDataEvent.Loading -> {}
+                          CurrencyDataEvent.RemoteErrorByNetwork -> {}
+                      }
               }
           }
       }
