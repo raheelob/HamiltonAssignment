@@ -1,0 +1,39 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="String" />
+
+        <variable
+            name="currencyItemClickListener"
+            type="com.example.currencyexchange.ui.currency.adapter.CurrencyListAdapter.CurrencyItemClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextAppearance.AppCompat.Button"
+            android:backgroundTint="@color/dialog_bg"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@{data}"
+            android:onClick="@{()->currencyItemClickListener.onClick(data)}"
+            tools:text="AUD"
+            android:gravity="center"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

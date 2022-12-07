@@ -2,6 +2,9 @@ package com.example.currencyexchange.ui.currency.fragment
 
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +13,8 @@ import com.example.currencyexchange.databinding.FragmentCurrencySelectionBinding
 import com.example.currencyexchange.ui.base.BaseFragment
 import com.example.currencyexchange.ui.currency.viewmodel.CurrencyViewModel
 import com.example.currencyexchange.utils.ProgressDialog
+import com.example.currencyexchange.utils.dialog.CurrencyBottomSheetDialog
+import com.example.currencyexchange.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -21,8 +26,54 @@ class CurrencySelectionFragment : BaseFragment<FragmentCurrencySelectionBinding,
 
     override fun initView(binding: FragmentCurrencySelectionBinding, savedInstanceState: Bundle?) {
         mProgressDialog = ProgressDialog(requireActivity())
-        viewModel.fetchCurrencyExchangeRate("USD")
+        binding.viewModel = viewModel
+        binding.tvTo.setOnClickListener { toCurrency()}
+        binding.tvFrom.setOnClickListener {fromCurrency()}
+        binding.ivArrows.setOnClickListener {swapCurrency()}
     }
+
+    private fun swapCurrency() {
+        val fromText = binding.tvFrom.text.trim()
+        val toText = binding.tvTo.text.trim()
+        binding.tvFrom.text = toText
+        binding.tvTo.text = fromText
+    }
+
+    private fun fromCurrency() =  childFragmentManager.let {
+        CurrencyBottomSheetDialog.newInstance(object :
+            CurrencyBottomSheetDialog.ItemClickListener {
+            override fun onCloseClicked() {
+            }
+
+            override fun onCurrencyClick(data: String) {
+                if(data == binding.tvTo.text){
+                    showToast(requireContext(), "Please select another currency")
+                }else
+              binding.tvFrom.text = data
+            }
+        }).apply {
+            show(it, "FromCurrency")
+        }
+    }
+
+    private fun toCurrency() =  childFragmentManager.let {
+        CurrencyBottomSheetDialog.newInstance(object :
+            CurrencyBottomSheetDialog.ItemClickListener {
+            override fun onCloseClicked() {
+            }
+
+            override fun onCurrencyClick(data: String) {
+                if(data == binding.tvFrom.text){
+                    showToast(requireContext(), "Please select another currency")
+                }else
+                binding.tvTo.text = data
+            }
+        }).apply {
+            show(it, "ToCurrency")
+        }
+    }
+
+
 
     override fun observeViewModel(viewModel: CurrencyViewModel) {
       viewLifecycleOwner.lifecycleScope.launch{
@@ -33,4 +84,5 @@ class CurrencySelectionFragment : BaseFragment<FragmentCurrencySelectionBinding,
           }
       }
     }
+
 }
