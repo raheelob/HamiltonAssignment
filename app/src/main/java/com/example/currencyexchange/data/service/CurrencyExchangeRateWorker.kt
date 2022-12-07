@@ -23,7 +23,6 @@ class CurrencyExchangeRateWorker @AssistedInject constructor(
     }
 
     override suspend fun doWork(): Result {
-        Log.d("", "")
           try {
             useCase.execute(CurrencyUseCase.Params(currency = "USD", type = RepoCallType.WORKER))
                 .collect { response ->
