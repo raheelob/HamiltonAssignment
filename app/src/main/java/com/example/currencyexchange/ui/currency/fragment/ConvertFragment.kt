@@ -42,7 +42,7 @@ class ConvertFragment : BaseFragment<FragmentConvertBinding, CurrencyViewModel>(
     }
 
     private fun startTimer() {
-        countDownTimer = object : CountDownTimer(30000, 1000) {
+        countDownTimer = object : CountDownTimer(31000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTimer.text = "" + millisUntilFinished / 1000 + " s"
@@ -55,7 +55,7 @@ class ConvertFragment : BaseFragment<FragmentConvertBinding, CurrencyViewModel>(
         }.start()
     }
 
-    private fun showApprovalDialog() =  childFragmentManager.let {
+    private fun showApprovalDialog() = childFragmentManager.let {
         data?.let { data ->
             countDownTimer?.cancel()
             ApprovalBottomSheetDialog.newInstance(object :
@@ -66,7 +66,9 @@ class ConvertFragment : BaseFragment<FragmentConvertBinding, CurrencyViewModel>(
                 }
 
                 override fun onApprovalClick(data: ConversionModel) {
-
+                    val direction =
+                        ConvertFragmentDirections.actionConvertFragmentToApprovedFragment(data)
+                    findNavController().navigate(direction)
                 }
 
 

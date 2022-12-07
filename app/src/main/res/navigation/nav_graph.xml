@@ -11,32 +11,60 @@
         android:label="fragment_currency_selection"
         tools:layout="@layout/fragment_currency_selection">
         <action
+            android:id="@+id/action_currencySelectionFragment_to_convertFragment"
+            app:destination="@id/convertFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_currencySelectionFragment_to_convertFragment"
-            app:destination="@id/convertFragment">
+            app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="Data"
                 app:argType="com.example.currencyexchange.data.model.ConversionModel"
                 app:nullable="true" />
         </action>
 
+
     </fragment>
     <fragment
         android:id="@+id/convertFragment"
         android:name="com.example.currencyexchange.ui.currency.fragment.ConvertFragment"
         android:label="fragment_convert"
-        tools:layout="@layout/fragment_convert" >
+        tools:layout="@layout/fragment_convert">
         <action
+            android:id="@+id/action_convertFragment_to_currencySelectionFragment"
+            app:destination="@id/currencySelectionFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_convertFragment_to_approvedFragment"
+            app:destination="@id/approvedFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_convertFragment_to_currencySelectionFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/nav_graph"
-            app:destination="@id/currencySelectionFragment" />
+            app:popUpTo="@id/nav_graph">
+            <argument
+                android:name="Data"
+                app:argType="com.example.currencyexchange.data.model.ConversionModel"
+                app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/approvedFragment"
+        android:name="com.example.currencyexchange.ui.currency.fragment.ApprovedFragment"
+        android:label="fragment_approved"
+        tools:layout="@layout/fragment_approved">
+        <action
+            android:id="@+id/action_approvedFragment_to_currencySelectionFragment"
+            app:destination="@id/currencySelectionFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
 </navigation>
