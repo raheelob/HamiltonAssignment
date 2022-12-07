@@ -57,13 +57,13 @@ class CurrencyViewModel @Inject constructor(
     fun cancelTimer() = countDownTimer?.cancel()
 
     fun validateAmount(fromCurrency: AppCompatTextView, toCurrency: AppCompatTextView, amountToConvert: AppCompatEditText){
-        if(amountToConvert.text.toString().isEmpty() || amountToConvert.text.toString().toInt() == 0){
+        if(amountToConvert.text.toString().isEmpty() || amountToConvert.text.toString().toDouble() == 0.0){
             showError(ErrorData(
                 result = "Please enter a valid amount",
                 errorType = "Invalid Amount"
             ))
         }else{
-            if(amountToConvert.text.toString().toInt() > 0) {
+            if(amountToConvert.text.toString().toDouble() > 0) {
                 fetchCurrencyExchangeRate(
                     fromCurrency = fromCurrency.text.toString(),
                     toCurrency = toCurrency.text.toString(),
@@ -99,7 +99,7 @@ class CurrencyViewModel @Inject constructor(
         val toCurrencyObject = ConversionRatesModel::class.memberProperties.find { it.name == toCurrency }?.get(conversionRatesModel) as Double
         val convertedMoney = (amountToConvert * toCurrencyObject)/fromCurrencyObject
         viewModelScope.launch {
-             sendConvertedAmount( ConversionModel(amountToConvert.toInt(), fromCurrency, convertedMoney.toInt(), toCurrency, (toCurrencyObject/ fromCurrencyObject) ))
+             sendConvertedAmount( ConversionModel(amountToConvert, fromCurrency, convertedMoney, toCurrency, (toCurrencyObject/ fromCurrencyObject) ))
          }
     }
 
@@ -109,25 +109,25 @@ class CurrencyViewModel @Inject constructor(
 
     fun swapCurrency() = viewModelScope.launch { swapCurrencyEvent() }
 
-    fun showError(errorData: ErrorData) = viewModelScope.launch { sendErrorEvent(errorData) }
+    private fun showError(errorData: ErrorData) = viewModelScope.launch { sendErrorEvent(errorData) }
 
     internal suspend fun sendConvertedAmount( data: ConversionModel) {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.ConvertedAmount(data))
     }
 
-    internal suspend fun sendShowFromDialogEvent( ) {
+    private suspend fun sendShowFromDialogEvent( ) {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.showFromCurrencySelection)
     }
 
-    internal suspend fun sendToDialogEvent( ) {
+    private suspend fun sendToDialogEvent( ) {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.showToCurrencySelection)
     }
 
-    internal suspend fun swapCurrencyEvent( ) {
+    private suspend fun swapCurrencyEvent( ) {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.swapCurrency)
     }
 
-    internal suspend fun sendRemoteErrorByNetworkEvent( ) {
+    private suspend fun sendRemoteErrorByNetworkEvent( ) {
         currencyExchangeRateEventChannel.send(CurrencyDataEvent.RemoteErrorByNetwork)
     }
 

@@ -5,9 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ConversionModel(
-    val currencyToConvert: Int,
+    val currencyToConvert: Double,
     val currencyToConvertType: String,
-    val currencyConverted: Int,
+    val currencyConverted: Double,
     val currencyConvertedType: String,
     val conversionRate : Double
 ) : Parcelable
