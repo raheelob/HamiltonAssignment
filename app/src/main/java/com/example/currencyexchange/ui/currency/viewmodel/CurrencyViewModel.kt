@@ -80,7 +80,10 @@ class CurrencyViewModel @Inject constructor(
                 when (response) {
 
                     is RemoteData.Success -> response.value?.let {
-                        convertCurrency(fromCurrency, toCurrency, it.conversionRates!!, amountToConvert)
+                        it.conversionRates?.let { rates ->
+                            convertCurrency(fromCurrency, toCurrency,
+                                rates, amountToConvert)
+                        }
                     }
 
                     is RemoteData.RemoteErrorByNetwork -> {
